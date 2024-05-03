@@ -8,6 +8,8 @@
 //  can be chained together to form powerful pipelines for data aggregation.
 
 //example1
+
+
 "sales"
 db.createCollection("sales")
 [

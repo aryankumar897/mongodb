@@ -210,8 +210,15 @@ db.myCollection.insertMany(documents, { ordered: false });
 //?read opration in mongodb
 
 //*Find Documents:
-//comparison oprators 
+
+
+//?comparison oprators 
+
+
 // Sample documents to insert
+
+
+
 var documents = [
     { name: "Alice", age: 25, department: "HR", salary: 50000 },
     { name: "Bob", age: 30, department: "IT", salary: 60000 },
@@ -223,6 +230,9 @@ var documents = [
     { name: "Henry", age: 32, department: "IT", salary: 63000 },
     { name: "Ivy", age: 37, department: "Finance", salary: 72000 },
     { name: "Jack", age: 29, department: "HR", salary: 56000 }
+
+
+
 ];
 
 // Insert the documents into the collection
@@ -255,98 +265,99 @@ db.employees.insertMany(documents);
 
 // Name
 // Description
-// $and
+
 
 [
-    { "_id": 1, "name": "Alice", "age": 20, "grade": "A" },
-    { "_id": 2, "name": "Bob", "age": 22, "grade": "B" },
-    { "_id": 3, "name": "Charlie", "age": 18, "grade": "A" },
-    { "_id": 4, "name": "David", "age": 21, "grade": "C" }
-]
-db.students.find({
-    $and: [
-        { age: { $gt: 19 } },  // Age greater than 19
-        { grade: "A" }         // Grade is "A"
-    ]
-})
+    {
+        "_id": ObjectId("61f4d2056daabc0012345678"),
+        "name": "Smartphone",
+        "category": "Electronics",
+        "price": 599.99,
+        "quantity": 100
+    }, {
+        "_id": ObjectId("61f4d2056daabc0012345679"),
+        "name": "T-Shirt",
+        "category": "Clothing",
+        "price": 29.99,
+        "quantity": 200
+    }, {
+        "_id": ObjectId("61f4d2056daabc0012345680"),
+        "name": "Python Programming",
+        "category": "Books",
+        "price": 49.99,
+        "quantity": 50
+    }
+    , {
+        "_id": ObjectId("61f4d2056daabc0012345681"),
+        "name": "Wooden Chair",
+        "category": "Furniture",
+        "price": 149.99,
+        "quantity": 20
+    }
+    , {
+        "_id": ObjectId("61f4d2056daabc0012345682"),
+        "name": "Laptop",
+        "category": "Electronics",
+        "brand": "Apple",
+        "price": 1499.99,
+        "quantity": 50
+    }
 
-
-
-// Joins query clauses with a logical AND returns all documents that match the conditions of both clauses.
-//     $not
-
-[
-    { "_id": 1, "name": "Laptop", "price": 1200, "quantity": 5 },
-    { "_id": 2, "name": "Mouse", "price": 20, "quantity": 10 },
-    { "_id": 3, "name": "Keyboard", "price": 50, "quantity": 7 },
-    { "_id": 4, "name": "Monitor", "price": 300, "quantity": 3 }
-]
-
-db.products.find({
-    quantity: { $not: { $lt: 1 } } // Quantity is not less than 1 (i.e., greater than or equal to 1)
-})
-
-
-// Inverts the effect of a query expression and returns documents that do not match the query expression.
-//     $nor
-[
-    { "_id": 1, "name": "Laptop", "price": 1200, "category": "Electronics" },
-    { "_id": 2, "name": "Keyboard", "price": 50, "category": "Accessories" },
-    { "_id": 3, "name": "Chair", "price": 150, "category": "Furniture" },
-    { "_id": 4, "name": "Mouse", "price": 20, "category": "Accessories" }
-]
-
-db.products.find({
-    $nor: [
-        { category: "Electronics" }, // Products that are electronics
-        { category: "Accessories" } // Products that are accessories
-    ]
-})
-//result
-[
-    { "_id": 3, "name": "Chair", "price": 150, "category": "Furniture" }
 ]
 
-// Joins query clauses with a logical NOR returns all documents that fail to match both clauses.
-//     $or
-// Joins query clauses with a logical OR returns all documents that match the conditions of either clause.
-[
-    { "_id": 1, "name": "Laptop", "price": 1200, "category": "Electronics" },
-    { "_id": 2, "name": "Keyboard", "price": 50, "category": "Accessories" },
-    { "_id": 3, "name": "Chair", "price": 150, "category": "Furniture" },
-    { "_id": 4, "name": "Mouse", "price": 20, "category": "Accessories" }
-]
 
-db.products.find({
-    $or: [
-        { category: "Electronics" },   // Products that are electronics
-        { price: { $lt: 100 } }        // Products with price less than $100
-    ]
-})
-//result
-[
-    { "_id": 1, "name": "Laptop", "price": 1200, "category": "Electronics" },
-    { "_id": 2, "name": "Keyboard", "price": 50, "category": "Accessories" },
-    { "_id": 4, "name": "Mouse", "price": 20, "category": "Accessories" }
-]
+
+//*$and Operator: This operator selects
+//documents that satisfy all the specified conditions.
+
+
+//*$or Operator: This operator selects documents that satisfy
+//at least one of the specified conditions.
+
+//*$nor Operator: This operator selects documents that fail all the specified conditions.
+
+//*$exists Operator: This operator selects documents where the specified field exists or does not exist.
+
 
 
 //?  coursor oprator
 
+
+
+
+// a cursor is an object returned by a database query that 
+// allows you to traverse the result set, retrieve documents
+//  one by one, and perform operations on them.The cursor
+//   provides a way to iterate over the query results and 
+//   access each document individually.
+
 //sort method
 // Sort documents by age in ascending order
+
+
+
+
+
 db.employees.find().sort({ age: 1 });
 
 // Sort documents by salary in descending order
 db.employees.find().sort({ age: -1 });
 
 
+
+//start////
+
+
+
+
+
 //limit
 // Limit the result set to 5 documents
-db.employees.find().limit(5);
+db.employee.find().limit(5);
 
 //count
 // Count the number of documents where the age is greater than 30
+
 db.employees.find({ age: { $gt: 30 } }).count();
 //toArray()
 // Convert the cursor to an array
@@ -356,7 +367,8 @@ var resultArray = db.employees.find().toArray();
 
 
 //In MongoDB, the element operators are used to query 
-//documents based on the presence or absence of fields or elements within arrays. 
+//documents based on the presence or absence of fields or 
+//elements within arrays. 
 // Consider a collection of contacts with different fields
 db.contacts.insertMany([
     { name: "Alice", email: "alice@example.com" },
@@ -372,7 +384,36 @@ db.contacts.find({ phone: { $exists: false } });
 
 //*$type Operator
 
+
+// In MongoDB, the $type operator is used in
+//  queries to match documents based on their data types.
+//  It allows you to find documents where a specific field 
+//  has a certain data type.Here's 
+// how you can use the $type operator in MongoDB queries:
+
 // Consider a collection of contacts with different field types
+
+// Available Data Types:
+// MongoDB supports various data types that you can use with the $type operator.Some of the commonly used data types include:
+// "double": 64 - bit floating - point number
+// "string": UTF - 8 encoded string
+// "object": Embedded document
+// "array": Array
+// "binData": Binary data
+// "objectId": MongoDB ObjectId
+// "bool": Boolean
+// "date": Date
+// "null": Null value
+// "regex": Regular expression
+// "javascript": JavaScript code
+// "symbol": Symbol
+// "int": 32 - bit integer
+// "timestamp": MongoDB internal timestamp
+// "long": 64 - bit integer
+// "decimal": Decimal128
+
+
+
 db.contacts.insertMany([
     { name: "Alice", age: 25, tags: ["tech", "programming"] },
     { name: "Bob", isActive: true },
@@ -385,23 +426,22 @@ db.contacts.find({ age: { $type: "number" } });
 // Find documents where the "tags" field is an array
 db.contacts.find({ tags: { $type: "array" } });
 
+db.collection.find({ name: { $type: 'string' } });
 
-//3 example
-// Consider a collection of contacts with different email formats
-db.contacts.insertMany([
-    { name: "Alice", email: "alice@example.com" },
-    { name: "Bob", email: "bob123@gmail.com" },
-    { name: "Charlie", email: "charlie@example.com" }
-]);
 
-// Find documents where the "name" field starts with "A"
-db.contacts.find({ name: { $regex: /^A/ } });
 
-// Find documents where the "email" field contains "example.com"
-db.contacts.find({ email: { $regex: /example\.com$/ } });
 //*$size Operator:
 
-// Consider a collection of documents with arrays of different sizes
+
+// The $size operator in MongoDB is used to query 
+// documents based on the size of an array field.It
+//  allows you to find documents where a specific array
+//   field contains a certain number of elements.Here's a 
+//   detailed explanation
+//  of how the $size operator works in MongoDB queries:
+
+
+
 db.items.insertMany([
     { name: "Item 1", tags: ["red", "blue"] },
     { name: "Item 2", tags: ["green", "yellow", "orange"] },
@@ -409,18 +449,14 @@ db.items.insertMany([
 ]);
 
 // Find documents where the "tags" array has exactly 2 elements
-db.items.find({ tags: { $size: 2 } });
+db.item.find({ tags: { $size: 2 } });
 
 //*$all Operator:
 // Consider a collection of documents with arrays of tags
-db.products.insertMany([
-    { name: "Product 1", tags: ["tech", "electronics", "gadgets"] },
-    { name: "Product 2", tags: ["electronics", "accessories"] },
-    { name: "Product 3", tags: ["tech", "accessories"] }
-]);
+
 
 // Find documents where the "tags" array contains both "tech" and "accessories"
-db.products.find({ tags: { $all: ["tech", "accessories"] } });
+db.item.find({ tags: { $all: ["green", "yellow"] } });
 
 //*$elemMatch Operator:
 // Consider a collection of students with scores array
@@ -433,73 +469,6 @@ db.students.insertMany([
 // Find documents where the "scores" array contains a score greater than 90 and less than 100
 db.students.find({ scores: { $elemMatch: { $gt: 90, $lt: 100 } } });
 
-//example
-// {
-//     "_id": 1,
-//         "name": "Alice",
-//             "scores": [
-//                 { "subject": "Math", "score": 85 },
-//                 { "subject": "Science", "score": 90 },
-//                 { "subject": "History", "score": 75 }
-//             ]
-// }
-
-// {
-//     "_id": 2,
-//         "name": "Bob",
-//             "scores": [
-//                 { "subject": "Math", "score": 70 },
-//                 { "subject": "Science", "score": 88 },
-//                 { "subject": "History", "score": 92 }
-//             ]
-// }
-
-// {
-//     "_id": 3,
-//         "name": "Charlie",
-//             "scores": [
-//                 { "subject": "Math", "score": 95 },
-//                 { "subject": "Science", "score": 82 },
-//                 { "subject": "History", "score": 78 }
-//             ]
-// }
-
-
-// {
-//     "_id": 4,
-//         "name": "David",
-//             "scores": [
-//                 { "subject": "Math", "score": 82 },
-//                 { "subject": "Science", "score": 79 },
-//                 { "subject": "History", "score": 85 }
-//             ]
-// }
-
-// {
-//     "_id": 5,
-//         "name": "Eva",
-//             "scores": [
-//                 { "subject": "Math", "score": 88 },
-//                 { "subject": "Science", "score": 91 },
-//                 { "subject": "History", "score": 94 }
-//             ]
-// }
-
-
-db.students.find({
-    "scores": {
-        $elemMatch: {
-            "subject": "Math",
-            "score": { $gte: 80 }
-        }
-    },
-    "scores": {
-        $elemMatch: {
-            "subject": "Science",
-            "score": { $gte: 80 }
-        }
-    }
-})
 
 
 
@@ -520,7 +489,7 @@ db.students.find({
 //                 "age": 30,
 //                     "country": "USA"
 // }
-db.users.find({}, { username: 1, email: 1, _id: 0 })
+
 //result
 // [
 //     { "username": "john_doe", "email": "john@example.com" },
@@ -528,56 +497,66 @@ db.users.find({}, { username: 1, email: 1, _id: 0 })
 // ]
 
 
+
+
+
+
+
+
 //example2
-// {
-//    
-//         "title": "Introduction to MongoDB",
-//             "content": "MongoDB is a NoSQL database...",
-//                 "comments": [
-//                     { "user": "Alice", "comment": "Great introduction!" },
-//                     { "user": "Bob", "comment": "Looking forward to more tutorials." }
-//                 ]
-// }
 
-// {
-//   
-//         "title": "Advanced MongoDB Queries",
-//             "content": "Learn about aggregation pipelines...",
-//                 "comments": [
-//                     { "user": "Charlie", "comment": "Very informative!" },
-//                     { "user": "David", "comment": "Can't wait to try these queries." }
-//                 ]
-// }
+db.post.insertMany([
+    {
+        "_id": 1,
+        "title": "Introduction to MongoDB",
+        "content": "MongoDB is a NoSQL database...",
+        "comments": [
+            { "user": "Alice", "comment": "Great introduction!" },
+            { "user": "Bob", "comment": "Looking forward to more tutorials." }
+        ]
+    },
+    {
+        "_id": 2,
+        "title": "Advanced MongoDB Queries",
+        "content": "Learn about aggregation pipelines...",
+        "comments": [
+            { "user": "Charlie", "comment": "Very informative!" },
+            { "user": "David", "comment": "Can't wait to try these queries." }
+        ]
+    },
+    {
+        "_id": 3,
+        "title": "MongoDB Schema Design",
+        "content": "Best practices for schema design...",
+        "comments": [
+            { "user": "Emma", "comment": "This helped me a lot!" },
+            { "user": "Frank", "comment": "Need more examples for complex schemas." }
+        ]
+    },
+    {
+        "_id": 4,
+        "title": "MongoDB Indexing",
+        "content": "Optimizing queries with indexes...",
+        "comments": [
+            { "user": "Grace", "comment": "Indexing made a huge difference!" },
+            { "user": "Henry", "comment": "How to create compound indexes?" }
+        ]
+    },
+    {
+        "_id": 5,
+        "title": "MongoDB Performance Tuning",
+        "content": "Improving performance through configuration...",
+        "comments": [
+            { "user": "Isabella", "comment": "These tips really boosted my app!" },
+            { "user": "Jack", "comment": "Any suggestions for large datasets?" }
+        ]
+    }
+]);
 
-// {
-//     
-//         "title": "MongoDB Schema Design",
-//             "content": "Best practices for schema design...",
-//                 "comments": [
-//                     { "user": "Emma", "comment": "This helped me a lot!" },
-//                     { "user": "Frank", "comment": "Need more examples for complex schemas." }
-//                 ]
-// }
-// {
-//   
-//         "title": "MongoDB Indexing",
-//             "content": "Optimizing queries with indexes...",
-//                 "comments": [
-//                     { "user": "Grace", "comment": "Indexing made a huge difference!" },
-//                     { "user": "Henry", "comment": "How to create compound indexes?" }
-//                 ]
-// }
 
-// {
-//    
-//         "title": "MongoDB Performance Tuning",
-//             "content": "Improving performance through configuration...",
-//                 "comments": [
-//                     { "user": "Isabella", "comment": "These tips really boosted my app!" },
-//                     { "user": "Jack", "comment": "Any suggestions for large datasets?" }
-//                 ]
-// }
-db.posts.findOne({ _id: 1 }, { comments: 1, _id: 0 })
+db.users.find({}, { title: 1, content: 1, _id: 0 })
+
+db.post.findOne({ _id: 1 }, { comments: 1, _id: 0 })
 result
 
 // {
@@ -587,107 +566,79 @@ result
 //     ]
 // }
 
-db.posts.aggregate([
-    { $match: { _id: 3 } },
-    { $unwind: "$comments" },
-    { $match: { "comments.user": { $in: ["Emma", "Frank"] } } },
-    { $project: { "_id": 0, "comment": "$comments.comment" } }
-])
-//result
-[
-    { "comment": "This helped me a lot!" },
-    { "comment": "Need more examples for complex schemas." }
-]
-
-//total comments
-db.posts.aggregate([
-    { $unwind: "$comments" },
-    { $group: { _id: null, totalComments: { $sum: 1 } } }
-])
-
-result
-[
-    { "_id": null, "totalComments": 10 }
-]
-
-//$all vs $elemMatch
-// In MongoDB, the $all operator and the $elemMatch 
-// operator are used to query documents based on conditions
-//  related to arrays within the documents.Let's
-//  discuss each operator and provide examples 
-//  of how they can be used.
- Syntax
-// {
-//     <field>: {$all: [<value1>, <value2>, ...] }
-// }
-// {
-//     "_id": 1,
-//         "title": "The Great Gatsby",
-//             "author": "F. Scott Fitzgerald",
-//                 "genres": ["Fiction", "Classic", "Drama"]
-// }
-db.books.find({ genres: { $all: ["Classic", "Drama"] } })
-Syntax
-// {
-//     <field>: {$elemMatch: {<condition1>, <condition2>, ... } } 
-//     }
-// {
-//     "_id": 1,
-//         "name": "Alice",
-//             "grades": [
-//                 { "subject": "Math", "score": 95 },
-//                 { "subject": "English", "score": 85 }
-//             ]
-// }
-db.students.find({ grades: { $elemMatch: { subject: "Math", score: { $gte: 90 } } } })
 
 
-//Removing Fields with $unset:
 
-//db.collection.updateMany({}, { $unset: { < field1 >: "", < field2 >: "" } })
+// To delete documents in MongoDB,
+//  you can use the deleteOne()
+//   method to delete a single document that matches a specified filter, and the deleteMany() method to delete multiple documents that match
+//  a specified filter.Here's how you would use these methods:
 
-// {
-//     "_id": 1,
-//         "name": "Product A",
-//             "price": 100,
-//                 "discount": 10
-// }
+// Delete a single document using deleteOne()
+db.collection.deleteOne({ "_id": 1 }); // Deletes the document with _id equal to 1
 
-db.products.updateMany({}, { $unset: { discount: "" } })
+// Delete multiple documents using deleteMany()
+db.collection.deleteMany({ "status": "Draft" }); // Deletes all documents with the status "Draft"
 
-//?Renaming Fields with $rename:
-//db.collection.updateMany({}, { $rename: { < oldField >: "<newField>" } })
 
-// {
-//     "_id": 1,
-//         "name": "John Doe",
-//             "city": "New York"
-// }
 
-db.customers.updateMany({}, { $rename: { city: "location" } })
-//updataing  array and imbedded documents
-//delete oprator in mongodb
 
-// {
-//     "_id": ObjectId("1"),
-//         "name": "Product A",
-//             "price": 100
-// }
-// {
-//     "_id": ObjectId("2"),
-//         "name": "Product B",
-//             "price": 50
-// }
-// {
-//     "_id": ObjectId("3"),
-//         "name": "Product C",
-//             "price": 150
-// }
-// {
-//     "_id": ObjectId("4"),
-//         "name": "Product D",
-//             "price": 75
-// }
-// db.products.deleteOne({ _id: ObjectId("3") })
-// db.products.deleteMany({ price: { $lte: 75 } })
 
+
+
+
+
+// example of updating documents using updateOne() and updateMany()
+//  in MongoDB, along with inserting five documents into a collection:
+
+
+// Inserting five documents into the collection
+db.collection.insertMany([
+    {
+        "_id": 1,
+        "title": "Introduction to MongoDB",
+        "content": "MongoDB is a NoSQL database...",
+        "author": "Alice",
+        "status": "Draft"
+    },
+    {
+        "_id": 2,
+        "title": "Advanced MongoDB Queries",
+        "content": "Learn about aggregation pipelines...",
+        "author": "Bob",
+        "status": "Draft"
+    },
+    {
+        "_id": 3,
+        "title": "MongoDB Schema Design",
+        "content": "Best practices for schema design...",
+        "author": "Charlie",
+        "status": "Draft"
+    },
+    {
+        "_id": 4,
+        "title": "MongoDB Indexing",
+        "content": "Optimizing queries with indexes...",
+        "author": "David",
+        "status": "Draft"
+    },
+    {
+        "_id": 5,
+        "title": "MongoDB Performance Tuning",
+        "content": "Improving performance through configuration...",
+        "author": "Emma",
+        "status": "Draft"
+    }
+]);
+
+// Update a single document using updateOne()
+db.collection.updateOne(
+    { "title": "Introduction to MongoDB" }, // Filter to match the document
+    { $set: { "status": "Published" } } // Update operation
+);
+
+// Update multiple documents using updateMany()
+db.collection.updateMany(
+    { "status": "Draft" }, // Filter to match documents
+    { $set: { "status": "Reviewed" } } // Update operation
+);
