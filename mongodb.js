@@ -1,27 +1,60 @@
+//https://www.mongodb.com/try/download/community
+//https://www.mongodb.com/try/download/shell
 
-//* MongoDB is a popular open - source NoSQL database management system that uses a document - oriented data model.It is designed to be flexible, scalable, and performant, making it suitable for a wide range of use cases.
+
+
+//* MongoDB is a popular open - source NoSQL database management
+//* system that uses a document - oriented data model.It is
+//* designed to be flexible, scalable, and performant, making it
+//* suitable for a wide range of use cases.
 
 //     Here's an introduction to some key concepts and features of MongoDB:
 
 
-//*1 Document - Oriented: MongoDB stores data in flexible, JSON - like documents, which can have varying structures.This allows developers to represent complex hierarchical relationships in a single record.
+//*1 Document - Oriented: MongoDB stores data in flexible,
+//* JSON - like documents, which can have varying structures.
+//*This allows developers to represent complex hierarchical 
+//*relationships in a single record.
 
 
-//*2     Schema - less: Unlike traditional relational databases, MongoDB does not enforce a rigid schema.This means you can insert documents into a collection without a predefined structure.However, you can enforce schema validation rules if needed.
+//*2     Schema - less: Unlike traditional relational databases,
+//* MongoDB does not enforce a rigid schema.This means you can insert 
+//*documents into a collection without a predefined structure.However, 
+//*you can enforce schema validation rules if needed.
 // Collections and Documents: MongoDB organizes data into collections, which are analogous to tables in relational databases.Each collection contains one or more documents, which are individual records represented in BSON(Binary JSON) format.
 
-//* 3    Indexes: MongoDB supports secondary indexes, which can greatly improve query performance by allowing for efficient data retrieval.Indexes can be created on any field within a document.
+//* 3    Indexes: MongoDB supports secondary indexes, which can greatly 
+//*improve quefry perormance by allowing for efficient data retrieval.
+//*Indexes can be created on any field within a document.
+indexe;true
 
-//* 4   Query Language: MongoDB provides a rich query language that allows you to perform complex queries against your data.You can filter, sort, and aggregate documents using operators and expressions.
+//* 4   Query Language: MongoDB provides a rich query language that 
+//*allows you to perform complex queries against your data.You can filter,
+//* sort, and aggregate documents using operators and expressions.
 
-// * 5   Aggregation Framework: MongoDB's Aggregation Framework allows you to perform advanced data processing operations, such as grouping, sorting, and filtering, directly within the database.
+// * 5   Aggregation Framework: MongoDB's Aggregation Framework allows
+//* you to perform advanced data processing operations, such as grouping,
+//* sorting, and filtering, directly within the database.
 
 
-//*6 Scalability: MongoDB is designed to scale horizontally across multiple servers, making it suitable for large - scale deployments.It supports sharding, which distributes data across multiple machines, and replication, which provides high availability and fault tolerance.
+//*6 Scalability: MongoDB is designed to scale horizontally across 
+//*multiple servers, making it suitable for large - scale deployments.
+//*It supports sharding, which distributes data across multiple machines, 
+//*and replication, which provides high availability and fault tolerance.
 
 
-// * 7   JSON / BSON: MongoDB uses JSON(JavaScript Object Notation) as its primary data interchange format.Internally, data is stored in BSON, a binary representation of JSON, which adds additional data types and optimizations.
-//*8    Community and Ecosystem: MongoDB has a large and active community of developers and contributors.It is supported by a rich ecosystem of tools, libraries, and services, including drivers for various programming languages, graphical user interfaces, and cloud services.
+// * 7   JSON / BSON: MongoDB uses JSON(JavaScript Object Notation)
+//* as its primary data interchange format.Internally, data is stored 
+//*in BSON, a binary representation of JSON, which adds additional data
+//* types and optimizations.
+
+
+
+
+//*8    Community and Ecosystem: MongoDB has a large and active community 
+//*of developers and contributors.It is supported by a rich ecosystem of 
+//*tools, libraries, and services, including drivers for various
+//* programming languages, graphical user interfaces, and cloud services.
 
 
 
@@ -34,47 +67,53 @@
 
 //1 Data Model:
 
-//* SQL databases are based on a relational data model, where data is organized into tables with rows and columns.
+//* SQL databases are based on a relational data model,
+//* where data is organized into tables with rows and columns.
 // *Tables have predefined schemas, and data must conform to this schema.
 //2 Query Language:
 
 
 //* SQL databases use the SQL language for querying and manipulating data.
 //* SQL provides a standardized syntax for defining, querying, and manipulating relational databases.
-//  3   Transactions:
 
-// *SQL databases typically support ACID(Atomicity, Consistency, Isolation, Durability) transactions, ensuring data integrity and consistency.
 // 4    Scalability:
 
 
-// *SQL databases traditionally scale vertically, by adding more resources(CPU, memory) to a single server.
-// *Scaling out(horizontally) can be more challenging and may require sharding or replication.
+// *SQL databases traditionally scale vertically, by adding more 
+//*resources(CPU, memory) to a single server.
+// *Scaling out(horizontally) can be more challenging and may require 
+
+//*sharding or replication.
 //    5 Examples:
 
-//* Examples of SQL databases include MySQL, PostgreSQL, Oracle Database, Microsoft SQL Server, etc.
+//* Examples of SQL databases include MySQL, PostgreSQL,
+//* Oracle Database, Microsoft SQL Server, etc.
 //  6  NoSQL(Not Only SQL):
 
 //7 Data Model:
-//* NoSQL databases use various data models, including document - oriented, key - value, column - family, and graph - based models.
+//* NoSQL databases use various data models, including 
+//*document - oriented, key - value, column - family, and 
+//*graph - based models.
 // *They offer greater flexibility in data representation, allowing for schema - less or dynamic schemas.
 
 //8 Query Language:
 
-// *NoSQL databases may have their own query languages or APIs for accessing and manipulating data.
-//* Some NoSQL databases support SQL - like query languages for certain operations.
-
-// 9    Transactions:
-
-//* NoSQL databases may provide eventual consistency rather than strict consistency guarantees.
-//*They may sacrifice some ACID properties for scalability and performance.
-
-// 10    Scalability:
+// *NoSQL databases may have their own query languages 
+//*or APIs for accessing and manipulating data.
+//* Some NoSQL databases support SQL - like query languages for certain
+//* operations.
 
 
-//* NoSQL databases are designed to scale horizontally, by distributing data across multiple servers.
-// *They are better suited for handling large volumes of data and high throughput.
 
-//  11   Examples:
+// 9    Scalability:
+
+
+//* NoSQL databases are designed to scale horizontally,
+//* by distributing data across multiple servers.
+// *They are better suited for handling large volumes of data and high 
+//*throughput.
+
+//  10  Examples:
 
 //* Examples of NoSQL databases include MongoDB(document - oriented), Redis(key - value), Cassandra(column - family), Neo4j(graph - based), etc.
 
@@ -320,7 +359,7 @@ db.employees.insertMany(documents);
 
 
 
-//?  coursor oprator
+//?  coursor oprator Explanation
 
 
 
@@ -482,20 +521,6 @@ db.students.find({ scores: { $elemMatch: { $gt: 90, $lt: 100 } } });
 //  allow you to include or exclude specific fields from the query results
 
 
-// {
-//     "_id": 1,
-//         "username": "john_doe",
-//             "email": "john@example.com",
-//                 "age": 30,
-//                     "country": "USA"
-// }
-
-//result
-// [
-//     { "username": "john_doe", "email": "john@example.com" },
-
-// ]
-
 
 
 
@@ -569,17 +594,6 @@ result
 
 
 
-// To delete documents in MongoDB,
-//  you can use the deleteOne()
-//   method to delete a single document that matches a specified filter, and the deleteMany() method to delete multiple documents that match
-//  a specified filter.Here's how you would use these methods:
-
-// Delete a single document using deleteOne()
-db.collection.deleteOne({ "_id": 1 }); // Deletes the document with _id equal to 1
-
-// Delete multiple documents using deleteMany()
-db.collection.deleteMany({ "status": "Draft" }); // Deletes all documents with the status "Draft"
-
 
 
 
@@ -593,7 +607,7 @@ db.collection.deleteMany({ "status": "Draft" }); // Deletes all documents with t
 
 
 // Inserting five documents into the collection
-db.collection.insertMany([
+db.blog.insertMany([
     {
         "_id": 1,
         "title": "Introduction to MongoDB",
@@ -642,3 +656,16 @@ db.collection.updateMany(
     { "status": "Draft" }, // Filter to match documents
     { $set: { "status": "Reviewed" } } // Update operation
 );
+
+
+
+// To delete documents in MongoDB,
+//  you can use the deleteOne()
+//   method to delete a single document that matches a specified filter, and the deleteMany() method to delete multiple documents that match
+//  a specified filter.Here's how you would use these methods:
+
+// Delete a single document using deleteOne()
+db.collection.deleteOne({ "_id": 1 }); // Deletes the document with _id equal to 1
+
+// Delete multiple documents using deleteMany()
+db.collection.deleteMany({ "status": "Draft" }); // Deletes all documents with the status "Draft"

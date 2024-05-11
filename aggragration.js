@@ -4,8 +4,10 @@
 // in a collection to perform complex computations, group data, and
 // extract meaningful insights.It's particularly useful for data analysis,
 // reporting, and generating aggregated results from large datasets.
-//  MongoDB provides the Aggregation Framework, which consists of stages that
-//  can be chained together to form powerful pipelines for data aggregation.
+//  MongoDB provides the Aggregation Framework, which consists of stages
+// that
+//  can be chained together to form powerful pipelines for 
+//data aggregation.
 
 //example1
 
@@ -42,6 +44,10 @@ db.sales.aggregate([
     { "_id": 2, "customer": "Bob", "product": "Banana", "quantity": 3, "price": 1.5 },
     { "_id": 3, "customer": "Alice", "product": "Orange", "quantity": 2, "price": 3.0 },
     { "_id": 4, "customer": "Bob", "product": "Apple", "quantity": 4, "price": 2.5 }
+
+
+
+
 ]
 
 db.orders.aggregate([
@@ -93,7 +99,7 @@ db.order.aggregate([
         $project: {
             _id: 0, // Exclude the _id field from the output
             customer: 1, // Include the customer field
-            product: 1, // Include the product field
+         
             totalAmount: { $multiply: ["$quantity", "$price"] } // Calculate and include a new field for total amount
         }
     }
@@ -140,9 +146,14 @@ resultArray
 
 
 [
+
+    
     { "_id": 1, "title": "Book 1", "authors": ["Alice", "Bob"] },
     { "_id": 2, "title": "Book 2", "authors": ["Charlie"] },
     { "_id": 3, "title": "Book 3", "authors": ["David", "Emily", "Frank"] }
+
+
+
 
 ]
 
